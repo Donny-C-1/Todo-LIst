@@ -1,0 +1,8 @@
+#every node module
+/node_modules
+
+#everything ending in log
+*.log
+
+#temp files
+/temp
