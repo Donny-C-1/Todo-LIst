@@ -1,4 +1,4 @@
 export default function goal(todo = "", status = 'incomplete') {
-    this.goal = todo;
+    this.description = todo;
     this.status = status;
 }

@@ -39,15 +39,15 @@
             <h1>My Todo List</h1>
             <div>
                 <form action="" method="post">
-                    <input type="text" name="todoItem" id="inputBar">
-                    <button type="submit">ADD</button>
+                    <input type="text" name="todoItem" id="inputBar" autocomplete="off">
+                    <button id="addBtn" type="submit">ADD</button>
                 </form>
             </div>
         </div>
         <div>
             <ul id="list">
-                <template data-name="list-item">
-                    <li><span class="text"></span><button data-func="delete-goal">x</button></li>
+                <template data-name="list-item-template">
+                    <li><span class="text" data-name="list-item"></span><button data-func="delete-goal">x</button></li>
                 </template>
             </ul>
         </div>

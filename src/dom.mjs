@@ -1,6 +1,6 @@
-import { createItem, storeItem } from "./db.js";
+import { createItem, storeItem, getDb, clearDb } from "./db.mjs";
 
-function addTodo() {
+export function addTodo() {
     const input = document.getElementById('inputBar');
     return function(e) {
         e.preventDefault();
@@ -11,13 +11,13 @@ function addTodo() {
     }
 }
 
-function updateList() {
-    const template = document.querySelector("[data-name='list-template']");
+function updateList(text) {
+    const template = document.querySelector("[data-name='list-item-template']");
     const element = template.content.cloneNode(true);
     element.querySelector("[data-name='list-item']").textContent = text;
     
-    element.children[0].addEventListener('click', complete);
-    element.querySelector("[data-func='delete-goal']").addEventListener('click', (e) => deleteElement(e, text));
+    // element.children[0].addEventListener('click', complete);
+    // element.querySelector("[data-func='delete-goal']").addEventListener('click', (e) => deleteElement(e, text));
     document.getElementById('list').appendChild(element);
 }
 
@@ -27,4 +27,12 @@ function complete() {
 
 function deleteElement() {
     console.log('Element deleted');
+}
+
+export function displayList() {
+    const todoList = getDb();
+    todoList.forEach(obj => {
+        updateList(obj.description);
+    });
+    console.log('List displayed');
 }

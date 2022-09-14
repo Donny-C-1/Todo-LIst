@@ -1,4 +1,4 @@
-import goal from './goal.js';
+import goal from './goal.mjs';
 const database = 'todoList';
 
 function createItem(text) {
