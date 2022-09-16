@@ -27,7 +27,7 @@ function storeItem(item) {
 function deleteItem(text) {
     const db = getDb();
     if (db.length < 1) return;
-    const jsonItem = JSON.stringify(db.filter(obj => obj.goal !== text));
+    const jsonItem = JSON.stringify(db.filter(obj => obj.description !== text));
     localStorage.setItem(database, jsonItem);
 }
 
