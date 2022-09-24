@@ -1,51 +1,46 @@
 import goal from './goal.mjs';
 const database = 'todoList';
 
-function createItem(text) {
-    const item = new goal(text);
-    return item;
-}
+const db = {
+    createItem(text) {
+        const item = new goal(text);
+        return item;
+    },
 
-function createDb() {
-    localStorage.setItem(database, JSON.stringify([]));
-}
+    getItem(text) {
+        const db = this.fetch();
+        return db.length < 1 ? "" : db.find(item => item.description === text);
+    },
 
-function checkForDb() {
-    return localStorage.getItem(database) ? true : false;
-}
+    update(item) {
+        const db = this.fetch();
+        db.splice(db.findIndex(obj => obj.index === item.index), 1, item)
+        localStorage.setItem(database, JSON.stringify(db));
+    },
 
-function storeItem(item) {
-    if (!checkForDb()) {
-        createDb();
+    fetch() {
+        return JSON.parse(localStorage.getItem(database)) || [];
+    },
+
+    add(item) {
+        const db = this.fetch();
+        db.push(item);
+        localStorage.setItem(database, JSON.stringify(db));
+    },
+
+    delete(item) {
+        const db = this.fetch();
+        if (db.length < 1) return;
+
+        const itemIndex = db.indexOf(item);
+        db.splice(itemIndex, 1);
+
+        localStorage.setItem(database, JSON.stringify(db));
+    }, 
+
+    clear() {
+        localStorage.removeItem(database);
     }
-    const todoList = JSON.parse(localStorage.getItem(database));
-    todoList.push(item);
-    const JsonItem = JSON.stringify(todoList);
-    localStorage.setItem('todoList', JsonItem);
 }
 
-function deleteItem(text) {
-    const db = getDb();
-    if (db.length < 1) return;
-    const jsonItem = JSON.stringify(db.filter(obj => obj.description !== text));
-    localStorage.setItem(database, jsonItem);
-}
-
-function updateItem() {
-    //
-}
-
-function getItem() {
-    // Check local db or other and retrieve data
-}
-
-function getDb() {
-    // console.log(localStorage.getItem(database));
-    return checkForDb() ? JSON.parse(localStorage.getItem(database)) : [];
-}
-
-function clearDb() {
-    checkForDb() ? localStorage.setItem(database, JSON.stringify([])) : "";
-}
-
-export { createItem, storeItem, deleteItem, updateItem, getItem, getDb, clearDb };
+export default db;
