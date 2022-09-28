@@ -3,7 +3,7 @@
 
 <head>
     <title>Todo LIst</title>
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./images/icon.png" type="image/png">
     <meta charset='utf-8' />
     <meta name='author' content='Donny C' />
     <meta name='description' content='Simple todo list' />
@@ -12,12 +12,11 @@
     <link rel='stylesheet' href='./style.css' />
     <script type="module">
         import setup from './script.mjs';
-        window.addEventListener('DOMContentLoaded', setup);
+        window.addEventListener('DOMContentLoaded', setkup);
     </script>
 </head>
 
 <body>
-
     <!--*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-->
     <!--*..dddddddd...................................................................................................cccccc............................-->
     <!--*..dddd.dddd...............................................................................................ccccccccccc..........................-->
@@ -36,57 +35,97 @@
     <!--*.................................................................................yyy...yyy.....................................................-->
     <!--*,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,yyyyyyy,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,-->
 
-    <div id="todoList-container">
-        <!-- *InputBar-->
-        <form id="entry-field" method="post" action="">
-            <input type="text" name="Utask" id="Utask" placeholder="Enter your task" autocomplete="off">
-            <button type="submit" id="addBtn">ADD</button>
-        </form>
-
-        <!--*Navigation-->
-        <div id="navigation">
-            <button class="tabBtn active" data-link="all">ALL</button>
-            <button class="tabBtn" data-link="active">ACTIVE</button>
-            <button class="tabBtn" data-link="completed">COMPLETED</button>
-        </div>
-
-        <!-- *Tasks -->
-        <div>
-            <div id="tasks-container" class="tab">
-                <ul id="list">
-                    <template data-name="task-template">
-                        <li>
-                            <input type="checkbox">
-                            <span data-name="task"></span>
-                            <button data-func="delete-goal"><img src="./images/trash-outline.svg" alt="delete-task"
-                                    width="20" height="20"></button>
-                        </li>
-                    </template>
+    <div id="sidebar">
+        <div id="inner">
+            <div id="logo">
+                <img src="./images/icon.png" alt="logo" width="50" height="50" />
+                <span>Todolist</span>
+            </div>
+            <nav id="sidenav">
+                <ul>
+                    <!-- todo Use a flex, direction horizontal to space the settings tab from the rest-->
+                    <li>
+                        <a href="tasks">
+                            <img src="./images/tasks.svg" alt="tasks" width="20" height="20" />
+                            <span>Tasks</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects">
+                            <img src="./images/projects.svg" alt="projects" width="20" height="20" />
+                            <span>Projects</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="statistics">
+                            <img src="./images/stats.svg" alt="statistics" width="20" height="20" />
+                            <span>Statistics</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendar">
+                            <img src="./images/calendar.svg" alt="calendar" width="20" height="20" />
+                            <span>Calendar</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="history"> 
+                            <img src="./images/history.svg" alt="history" width="20" height="20" />
+                            <span>History</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings"> 
+                            <img src="./images/settings.svg" alt="settings" width="20" height="20" />
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <div id="vertical-bar"></div>
+                    <!-- Conditional log out button
+                        <li>Log out</li>
+                    -->
                 </ul>
-            </div>
-
-            <div id="active-container" class="tab">
-            </div>
-
-            <div id="completed-container" class="tab">
-                <table>
-                    <tr>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Due</th>
-                    </tr>
-                    <template data-name="history-template">
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </template>
-                </table></div>
+            </nav>
         </div>
     </div>
+    <main>
+        <div id="topbar">
+            <div><img src="./images/help.svg" alt="help" width="20" height="20"/> </div>
+            <div id="avatar">
+                <span id="username">Unknown User</span><span><img src="./images/avatar.png" alt="avatar" width="25" height="25" /> </span>
+            </div>
+        </div>
+        <div id="tasks" class="tab">
+            <h1>Tasks</h1>
+
+            <!-- *InputBar-->
+            <form id="entry-field" method="post" action="">
+                <input type="text" name="Utask" id="Utask" placeholder="Enter your task" autocomplete="off">
+                <button type="submit" id="addBtn">ADD</button>
+            </form>
+
+            <!-- *Tasks -->
+            <div>
+                <div id="tasks-container" class="tab">
+                    <ul id="list">
+                        <template data-name="task-template">
+                            <li>
+                                <input type="checkbox">
+                                <span data-name="task"></span>
+                                <button data-func="delete-goal"><img src="./images/trash-outline.svg" alt="delete-task"
+                                        width="20" height="20"></button>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="projects" class="tab">Projects</div>
+        <div id="statistics" class="tab">Statistics</div>
+        <div id="calendar" class="tab">Calendar</div>
+        <div id="history" class="tab">History</div>
+        <div id="settings" class="tab">Settings</div>
+    </main>
 </body>
 
 </html>
