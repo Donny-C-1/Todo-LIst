@@ -1,13 +1,13 @@
 import db from "./db.mjs";
 import history from "./history.mjs";
 
-export default function setup() {
-    setupTabs();
+export default function setupTasks() {
+    // setupTabs();
     const addBtn = document.getElementById('addBtn');
     addBtn.addEventListener('click', addTodo());
     displayList();
-    displayHistory();
-    console.log('Application Started Successfully');
+    // displayHistory();
+    // console.log('Application Started Successfully');
 }
 
 // *Functions Arranged By Aphabetical Order

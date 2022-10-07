@@ -1,8 +1,8 @@
-import setup from "./tasks.mjs";
+import setupTasks from "./tasks.mjs";
 
-export default function setkup() {
+export default function setup() {
     setupTabs();
-    setup();
+    setupTasks();
 }
 
 function setupTabs() {

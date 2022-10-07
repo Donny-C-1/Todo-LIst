@@ -237,7 +237,19 @@ main > .tab h1 {
 }
 
 /* *History Tab* */
-#completed-container table {
+#history table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+}
+
+#history table tr:first-child {
+    background-color: #000;
+    color: white;
+}
+
+/* #history table  */
+/* #completed-container table {
     width: 100%;
     border-collapse: collapse;
 }
@@ -263,4 +275,4 @@ main > .tab h1 {
 #completed-container td, #completed-container th {
     text-align: left;
     padding: .5em;
-}
+} */
