@@ -239,13 +239,25 @@ main > .tab h1 {
 /* *History Tab* */
 #history table {
     width: 100%;
-    border-collapse: collapse;
     box-shadow: 0 0 4px rgba(0, 0, 0, .5);
+    border-spacing: 0;
 }
 
 #history table tr:first-child {
     background-color: #000;
     color: white;
+}
+
+#history table tr:nth-child(even) {
+    background-color: gray;
+}
+
+#history tr:nth-child(odd) {
+    background-color: #ccc;
+}
+
+#history table th, #history table td {
+    padding: .7em 1em;
 }
 
 /* #history table  */

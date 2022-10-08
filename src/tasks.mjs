@@ -42,9 +42,10 @@ function deleteElement(e, text) {
     const index = e.currentTarget.dataset.link;
     document.querySelector(`[data-index='${index}']`).remove();
     const item = db.getItem(text);
+    item.status = "complete";
     db.delete(item);
     history.add(item);
-    updateHistory(item);
+    history.updateDom(item);
     console.log('Element deleted');
 }
 
@@ -110,7 +111,6 @@ function updateList(task) {
     deleteBtn.setAttribute('data-link', task.index)
 
     // *Add Events
-    // element.children[0].addEventListener('click', complete);
     deleteBtn.addEventListener('click', (e) => deleteElement(e, task.description));
     checkBox.addEventListener('click', e => complete(task));
 

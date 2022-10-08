@@ -1,8 +1,10 @@
 import setupTasks from "./tasks.mjs";
+import history from "./history.mjs";
 
 export default function setup() {
     setupTabs();
     setupTasks();
+    history.setup();
 }
 
 function setupTabs() {
